@@ -3,7 +3,6 @@ This project aims to develop a method for obtaining the group-level interpretati
 The group-level analysis comprises three procedures, namely, feature extraction, clustering of convolutional filters, and selective interpretation of task-relevant clusters. 
 The source code includes clustering of convolutional filters and selective interpretation.
 The sourc code for feature extraction are available from the corresponding author on reasonable request.
-This project was funded by the National Research Foundation of Korea under Grant NRF-2020R1A2C2003319.
 
 # Requirements
 * MATLAB >= 2008b

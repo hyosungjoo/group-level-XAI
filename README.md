@@ -2,14 +2,18 @@
 This project aims to develop a method for obtaining the group-level interpretation of EEG signals using a compact convolutional neural network (CNN). 
 The group-level analysis comprises three procedures: feature extraction, clustering of convolutional filters, and selective interpretation of task-relevant clusters. 
 The source code includes clustering of convolutional filters and selective interpretation.
-Feature extraction procedure can vary depending on the model and task.
+Feature extraction procedure can vary depending on the model and task, so you can make the your own feature extraction code using a model interpretability library (e.g., Captum).
 The source code for feature extraction is available upon reasonable request.
 
 # Requirements
-* MATLAB >= 2008b
+* MATLAB >= 2021a
 * EEGLab >= 2021.1 (NEED FieldTriplite Plugin)
 
-# Usage: Fx_cnn_group_level
+# Function 1: Fx_cnn_group_level
+### Overview
+This function includes two procedures: clustering of convolutional filters and selective interpretation.
+Feature extraction and dipole fitting should be preceded.
+You may find the function for dipole fitting in the file LICENSE in this directory.
 ### Key parameters
 * feature: feature array except with dipole location (NXM 2-D array)
   * N denotes the number of convolutional filters (our case: 800)

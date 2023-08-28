@@ -11,8 +11,6 @@ This project was funded by the National Research Foundation of Korea under Grant
 
 # Usage: Fx_cnn_group_level
 ### key parameters
-* STUDY : a blank EEGLAB STUDY
-* ALLEEG : a blank EEGLAB ALLEEG
 * feature : feature array except with dipole location (NXM 2-D array)
   * N denotes number of convolutional filters (our case: 800)
   * M denotes number of features except with dipole location (our case: 3)

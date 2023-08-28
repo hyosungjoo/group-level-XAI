@@ -18,7 +18,7 @@ You may find the function for dipole fitting in the file LICENSE in this directo
 * draw_figures: flag for drawing figures (0: off, 1: on)
   * ex) For example, using [1, 1] will enable Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
 * data_path: path which includes data
-### Use (see main.m)
+### Usage (see main.m)
 ```MATLAB
 [STUDY, ALLEEG]=Fx_cnn_group_level(STUDY, ALLEEG, feature, weights, draw_figures, data_path);
 ```

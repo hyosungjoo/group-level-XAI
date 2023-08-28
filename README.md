@@ -1,23 +1,23 @@
 # Introduction
 This project aims to develop a method for obtaining the group-level interpretation of EEG signals using a compact convolutional neural network (CNN). 
-The group-level analysis comprises three procedures, namely, feature extraction, clustering of convolutional filters, and selective interpretation of task-relevant clusters. 
+The group-level analysis comprises three procedures: feature extraction, clustering of convolutional filters, and selective interpretation of task-relevant clusters. 
 The source code includes clustering of convolutional filters and selective interpretation.
-The sourc code for feature extraction are available from the corresponding author on reasonable request.
+The source code for feature extraction is available from the corresponding author upon reasonable request.
 
 # Requirements
 * MATLAB >= 2008b
 * EEGLab >= 2021.1 (NEED FieldTriplite Plugin)
 
 # Usage: Fx_cnn_group_level
-### key parameters
-* feature : feature array except with dipole location (NXM 2-D array)
-  * N denotes number of convolutional filters (our case: 800)
-  * M denotes number of features except with dipole location (our case: 3)
-* weights : weights for clustering process (1-D array, our data: 2 - spectral features, dipole location)
-* draw_figures : flag for drawing figures (0: off, 1: on)
-  * ex) [1, 1] : sequentially figure1 (task relevancy bar graph) "on", figure 2 (dipole distribution) "on"
-* data_path : path which includes data
-### source code (see main.m)
+### Key parameters
+* feature: feature array except with dipole location (NXM 2-D array)
+  * N denotes the number of convolutional filters (our case: 800)
+  * M denotes the number of features except with dipole location (our case: 3)
+* weights: weights for clustering process (1-D array, our data: 2 - spectral features, dipole location)
+* draw_figures: flag for drawing figures (0: off, 1: on)
+  * ex) [1, 1]: sequentially figure 1 (task relevancy bar graph) "on", figure 2 (dipole distribution) "on"
+* data_path: path which includes data
+### Source code (see main.m)
 ```MATLAB
 [STUDY, ALLEEG]=Fx_cnn_group_level(STUDY, ALLEEG, feature, weights, draw_figures, data_path);
 ```

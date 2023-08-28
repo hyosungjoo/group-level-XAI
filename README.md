@@ -3,7 +3,7 @@ This project aims to develop a method for obtaining the group-level interpretati
 
 # Requirements
 * MATLAB >= 2020b
-* EEGLab >= 2021.1 (NEED FieldTriplite Plugin)
+* EEGLab >= 2021.1 (NEED FieldTrip Plugin)
 
 # Function 1: Fx_cnn_group_level
 ### Overview

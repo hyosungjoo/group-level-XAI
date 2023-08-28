@@ -16,7 +16,7 @@ You may find the function for dipole fitting in the file LICENSE in this directo
   * M denotes the number of features except with dipole location (our case: 3)
 * weights: weights for clustering process (1-D array, our data: 2 - spectral features, dipole location)
 * draw_figures: flag for drawing figures (0: off, 1: on)
-  * ex) For example, using [1, 1] will enable Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
+  * For example, using [1, 1] will enable Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
 * data_path: path which includes data
 ### Usage (see main.m)
 ```MATLAB

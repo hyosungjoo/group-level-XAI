@@ -16,7 +16,7 @@ This project was funded by the National Research Foundation of Korea under Grant
   * M denotes number of features except with dipole location (our case: 3)
 * weights : weights for clustering process (1-D array, our data: 2 - spectral features, dipole location)
 * draw_figures : flag for drawing figures (0: off, 1: on)
-  * ex) [1, 1] : sequentially figure1(task relevancy figure) "on", figure 2(dipole distribution) "on"
+  * ex) [1, 1] : sequentially figure1 (task relevancy bar graph) "on", figure 2 (dipole distribution) "on"
 * data_path : path which includes data
 ### source code (see main.m)
 ```MATLAB

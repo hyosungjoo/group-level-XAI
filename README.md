@@ -14,10 +14,10 @@ You may find the function for dipole fitting in the file in this directory (see 
 * feature: feature array except with dipole location (NXM 2-D array)
   * N denotes the number of convolutional filters (our case: 800)
   * M denotes the number of features except with dipole location (our case: 3)
-* weights: weights for clustering process (1-D array, our data: 2 - spectral features, dipole location)
+* weights: weights for clustering process (1-D array, our case had two weights - spectral features, dipole location)
 * draw_figures: flag for drawing figures (0: off, 1: on)
   * For example, using [1, 1] will enable Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
-* data_path: path which includes data
+* data_path: path which includes data (The EEGlab dataset containing the dipole fitting results must be saved in the dipfit folder in data_path).
 ### Usage (see main.m)
 ```MATLAB
 [STUDY, ALLEEG]=Fx_cnn_group_level(STUDY, ALLEEG, feature, weights, draw_figures, data_path);

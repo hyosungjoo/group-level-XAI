@@ -9,7 +9,7 @@ This project aims to develop a method for obtaining the group-level interpretati
 ### Overview
 This function includes two procedures: clustering of convolutional filters and selective interpretation.
 Feature extraction and dipole fitting should be preceded.
-You may find the function for dipole fitting in the file LICENSE in this directory.
+You may find the function for dipole fitting in the file in this directory (see Fx_dipfit_save.m).
 ### Key parameters
 * feature: feature array except with dipole location (NXM 2-D array)
   * N denotes the number of convolutional filters (our case: 800)

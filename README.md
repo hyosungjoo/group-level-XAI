@@ -3,7 +3,7 @@ This project aims to develop a method for obtaining the group-level interpretati
 
 # Requirements
 * MATLAB >= 2020b
-* EEGLab >= 2021.1 (NEED FieldTrip Plugin)
+* EEGLab >= 2021.1 (REQUIRE FieldTrip Plugin)
 
 # Function 1: Fx_cnn_group_level.m
 ### Overview
@@ -15,8 +15,7 @@ You may find the function for dipole fitting in the file in this directory (see 
   * N denotes the number of convolutional filters (our case: 800)
   * M denotes the number of features except with dipole location (our case: 3)
 * weights: Weights for clustering process (1-D array, our case had two weights - spectral features, dipole location)
-* draw_figures: Flag for drawing figures (0: off, 1: on)
-  * For example, using [1, 1] will enable to visualize Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
+* draw_figures: Flag for drawing figures (0: off, 1: on). For example, using [1, 1] will enable to visualize Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
 * data_path: path which includes data (The EEGlab dataset containing the dipole fitting results must be saved in the dipfit folder in data_path).
 ### Outputs
 * STUDY: A new STUDY set containing clustering results
@@ -34,7 +33,7 @@ You may find the function for dipole fitting in the file in this directory (see 
 This function includes dipole fitting procedure based on spatial pattern interpreted from compact CNN.
 This function 1) read raw EEG datasets, 2) fit dipole, and 3) save EEG datasets which contain dipole fitting results  
 ### Key parameters
-* spa_arr: Spatial pattern interpreted from compact CNN (NXM 2-D array)
+* spa_arr: Spatial pattern interpreted from compact CNN. The spatial pattern will be used for dipole fitting (NXM 2-D array)
   * N denotes the number of convolutional filters (our case: 800)
   * M denotes the number of EEG channels (our case: 64)
 * sub_size: The number of subjects (our case: 52)
@@ -49,5 +48,4 @@ Fx_dipfit_save(spa_arr, sub_size, bad_sub, data_path, matlab_path)
 # Paper Citation
 
 # Legal disclaimer
-This project is governed by the terms of the Creative Commons Zero 1.0 Universal (CC0 1.0) Public Domain Dedication (the Agreement). You should have received a copy of the Agreement with a copy of this software. 
-You may find the full license in the file LICENSE in this directory.
+This project is governed by the terms of the Creative Commons Zero 1.0 Universal (CC0 1.0) Public Domain Dedication (the Agreement). You should have received a copy of the Agreement with a copy of this software. You may find the full license in the file LICENSE in this directory.

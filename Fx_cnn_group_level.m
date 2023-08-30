@@ -2,21 +2,21 @@
 %               only clustering and selection process are included
 
 % Input: 
-%   STUDY        - a blank EEGLAB STUDY
-%   ALLEEG       - a blank EEGLAB ALLEEG
-%   feature      - feature array except with dipole location (NXM 2-D array)
-%                 => N denotes number of convolutional filters (our data: 800)
-%                 => M denotes number of features except with dipole location (our data: 3)
-%   weight       - weight for clustering process (1-D array, our data: 2)
-%                 => [feature except with dipole location, dipole location]
-%   draw_figures - flag for drawing figures (0: off, 1: on)
-%                 => sequentially figure1: task relevancy figure, figure2:dipoledistribution
-%   data_path    - path which includes data
+%   STUDY         - A current EEGLAB STUDY
+%   ALLEEG        - a current EEGLAB ALLEEG
+%   features      - Feature array except with dipole location (NXM 2-D array)
+%                  => N denotes the number of convolutional filters (our case: 800)
+%                  => M denotes the number of features except with dipole location (our case: 3)
+%   weights       - Weights for clustering process (1-D array, our case had two weights - spectral features, dipole location)
+%   draw_figures  - Flag for drawing figures (0: off, 1: on)
+%                  => For example, using [1, 1] will enable us to visualize Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
+%   data_path     - Path which includes data (The EEGlab dataset containing the dipole fitting results must be saved in the dipfit folder in data_path)
 
 % Outputs:
-%   STUDY        - a new STUDY set containing some or all of the datasets in ALLEEG, 
-%                 plus additional information from the optional inputs above. 
-%   ALLEEG       - a vector of EEG datasets included in the STUDY structure 
+%   STUDY         - A new STUDY set containing some or all of the datasets in ALLEEG, 
+%   ALLEEG        - A vector of EEG datasets included in the STUDY structure 
+%   group_output  - A structure to contain the selected number of clusters and convolutional filters belonging to selected clusters.
+%                   => convolutional filters represented with the subject number and branches, including convolutional filters.
 
 % This file is based on EEGLAB, see http://www.eeglab.org
 % for the documentation and details.
@@ -34,7 +34,7 @@
 % THE POSSIBILITY OF SUCH DAMAGE.
 
 
-function [STUDY, ALLEEG]= Fx_cnn_group_level(STUDY, ALLEEG, feature, weights, draw_figures, data_path)
+function [STUDY, ALLEEG, group_output]= Fx_cnn_group_level(STUDY, ALLEEG, features, weights, draw_figures, data_path)
     
     %% 1) make study
     % make a study
@@ -42,7 +42,8 @@ function [STUDY, ALLEEG]= Fx_cnn_group_level(STUDY, ALLEEG, feature, weights, dr
     list = cellstr(ls([eeg_path,'*.set']));
     EEG = pop_loadset('filename',list,'filepath',eeg_path);
     [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, EEG, 0,'study',0);
-    [STUDY ALLEEG] = std_editset( STUDY, ALLEEG, 'name','group-level','commands',{{'inbrain','on','dipselect',0.15}},'updatedat','on','savedat','on','rmclust','on' );
+    [STUDY ALLEEG] = std_checkset(STUDY, ALLEEG);
+    [STUDY ALLEEG] = std_editset( STUDY, ALLEEG, 'name','group-level','commands',{{'index',1,'subject','1'},{'inbrain','on','dipselect',0.15},{'index',2,'subject','2'},{'index',3,'subject','3'},{'index',4,'subject','4'},{'index',5,'subject','5'},{'index',6,'subject','6'},{'index',7,'subject','7'},{'index',8,'subject','8'},{'index',9,'subject','9'},{'index',10,'subject','10'},{'index',11,'subject','11'},{'index',12,'subject','12'},{'index',13,'subject','13'},{'index',14,'subject','14'},{'index',15,'subject','15'},{'index',16,'subject','16'},{'index',17,'subject','17'},{'index',18,'subject','18'},{'index',19,'subject','19'},{'index',20,'subject','20'},{'index',21,'subject','21'},{'index',22,'subject','22'},{'index',23,'subject','23'},{'index',24,'subject','24'},{'index',25,'subject','25'},{'index',26,'subject','26'},{'index',27,'subject','27'},{'index',28,'subject','28'},{'index',29,'subject','29'},{'index',30,'subject','30'},{'index',31,'subject','31'},{'index',32,'subject','32'},{'index',33,'subject','33'},{'index',34,'subject','34'},{'index',35,'subject','35'},{'index',36,'subject','36'},{'index',37,'subject','37'},{'index',38,'subject','38'},{'index',39,'subject','39'},{'index',40,'subject','40'},{'index',41,'subject','41'},{'index',42,'subject','42'},{'index',43,'subject','43'},{'index',44,'subject','44'},{'index',45,'subject','45'},{'index',46,'subject','46'},{'index',47,'subject','47'},{'index',48,'subject','48'},{'index',49,'subject','49'},{'index',50,'subject','50'}},'updatedat','on','savedat','on','rmclust','on' );
     [STUDY ALLEEG] = std_checkset(STUDY, ALLEEG);
     CURRENTSTUDY = 1; EEG = ALLEEG; CURRENTSET = [1:length(EEG)];
     
@@ -63,17 +64,23 @@ function [STUDY, ALLEEG]= Fx_cnn_group_level(STUDY, ALLEEG, feature, weights, dr
     end
 
     % concatenate features
-    feat_arr=[feature, dip_arr];
+    feat_arr=[features, dip_arr];
     feat_arr(~logical(rej_idx),:)=[];
 
     % normalize featuers
     norm_feat=(feat_arr-mean(feat_arr))./std(feat_arr);
 
+    % precompute component measure
+    if isempty(ls([eeg_path,'*.icaspec']))
+        [STUDY, ALLEEG] = std_precomp(STUDY, ALLEEG, 'components','savetrials','on','recompute','on','spec','on','specparams',{'specmode','fft','logtrials','off'});
+    end
+    
     % set preclustering array
-    [STUDY ALLEEG] = std_preclust(STUDY, ALLEEG, 1,{'spec','npca',size(feature,2),'weight',1,'freqrange',[3 25] },{'dipoles','weight',1});
-
-    norm_feat(:,1:size(feature,2))=norm_feat(:,1:size(feature,2))*weights(1);
-    norm_feat(:,size(feature,2)+1:end)=norm_feat(:,size(feature,2)+1:end)*weights(2);
+    [STUDY ALLEEG] = std_preclust(STUDY, ALLEEG, 1,{'spec','npca',size(features,2),'weight',1,'freqrange',[3 25] },{'dipoles','weight',1});
+    
+    
+    norm_feat(:,1:size(features,2))=norm_feat(:,1:size(features,2))*weights(1);
+    norm_feat(:,size(features,2)+1:end)=norm_feat(:,size(features,2)+1:end)*weights(2);
 
     % normalize features
     STUDY.etc.preclust.preclustdata=norm_feat;
@@ -111,11 +118,22 @@ function [STUDY, ALLEEG]= Fx_cnn_group_level(STUDY, ALLEEG, feature, weights, dr
     % t-test
     p_arr=zeros(clust_num,1);
 
-    for sort_cnt=1:clust_num
-        test_idx=cluster_descripter==sort_cnt;
-        test_rest_idx=find(cluster_descripter>0 & cluster_descripter~=sort_cnt);
-        [~,p_arr(sort_cnt)] = ttest2(TR(test_idx),TR(test_rest_idx),...
+    for p_cnt=1:clust_num
+        test_idx=cluster_descripter==p_cnt;
+        test_rest_idx=find(cluster_descripter>0 & cluster_descripter~=p_cnt);
+        [~,p_arr(p_cnt)] = ttest2(TR(test_idx),TR(test_rest_idx),...
             'Vartype','unequal','Tail','Right');
+    end
+    
+    selec_clust_idx=find(p_arr<0.001);
+    group_output.select_clust=selec_clust_idx;
+    
+    if isempty(selec_clust_idx)
+       [~,selec_clust_idx]=min(p_arr); 
+    end
+    group_output.select_filter=cell(length(selec_clust_idx),1);
+    for clust_cnt=1:length(selec_clust_idx)
+        group_output.select_filter{clust_cnt}=data_descripter(cluster_descripter==selec_clust_idx(clust_cnt),:);
     end
 
     %% Visualization

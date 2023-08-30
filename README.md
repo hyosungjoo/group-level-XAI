@@ -5,7 +5,7 @@ This project aims to develop a method for obtaining the group-level interpretati
 * MATLAB >= 2020b
 * EEGLab >= 2021.1 (NEED FieldTrip Plugin)
 
-# Function 1: Fx_cnn_group_level
+# Function 1: Fx_cnn_group_level.m
 ### Overview
 This function includes two procedures: clustering of convolutional filters and selective interpretation.
 Feature extraction and dipole fitting should be preceded.
@@ -29,7 +29,7 @@ You may find the function for dipole fitting in the file in this directory (see 
 [STUDY, ALLEEG, group_output]=Fx_cnn_group_level(STUDY, ALLEEG, features, weights, draw_figures, data_path);
 ```
 
-# Function 1: Fx_cnn_group_level
+# Function 2: Fx_dipfit_save.m
 ### Overview
 This function includes dipole fitting procedure based on spatial pattern interpreted from compact CNN.
 This function 1) read raw EEG datasets, 2) fit dipole, and 3) save EEG datasets which contain dipole fitting results  

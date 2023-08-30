@@ -15,14 +15,14 @@ You may find the function for dipole fitting in the file in this directory (see 
   * N denotes the number of convolutional filters (our case: 800)
   * M denotes the number of features except with dipole location (our case: 3)
 * weights: Weights for clustering process (1-D array, our case had two weights - spectral features, dipole location)
-* draw_figures: Flag for drawing figures (0: off, 1: on). For example, using [1, 1] will enable to visualize Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
+* draw_figures: Flag for drawing figures (0: off, 1: on). For example, using [1, 1] will enable us to visualize Figure 1 (task relevancy bar graph) and Figure 2 (dipole distribution)
 * data_path: path which includes data (The EEGlab dataset containing the dipole fitting results must be saved in the dipfit folder in data_path).
 ### Outputs
 * STUDY: A new STUDY set containing clustering results
 * ALLEEG: A vector of EEG datasets included in the STUDY structure 
-* group_output: A structure to contain the selected number of clusters and convolutional filters beloning to selected clusters.
+* group_output: A structure to contain the selected number of clusters and convolutional filters belonging to selected clusters.
  * convolutional filters represented with the subject number and branches, including convolutional filters.
-* This function draw two figures, encompassing task relevancy bar graph and dipole distribution.
+* This function draws two figures: task relevancy bar graph and dipole distribution.
 ### Usage (see main.m)
 ```MATLAB
 [STUDY, ALLEEG, group_output]=Fx_cnn_group_level(STUDY, ALLEEG, features, weights, draw_figures, data_path);
@@ -30,16 +30,16 @@ You may find the function for dipole fitting in the file in this directory (see 
 
 # Function 2: Fx_dipfit_save.m
 ### Overview
-This function includes dipole fitting procedure based on spatial pattern interpreted from compact CNN.
-This function 1) read raw EEG datasets, 2) fit dipole, and 3) save EEG datasets which contain dipole fitting results  
+This function includes a dipole fitting procedure based on spatial patterns interpreted from compact CNN.
+This function 1) reads raw EEG datasets, 2) fits dipole, and 3) saves EEG datasets that contain dipole-fitting results  
 ### Key parameters
-* spa_arr: Spatial pattern interpreted from compact CNN (NXM 2-D array). The spatial pattern will be used for dipole fitting.
+* spa_arr: Spatial pattern interpreted from compact CNN. The spatial pattern will be used for dipole fitting (NXM 2-D array)
   * N denotes the number of convolutional filters (our case: 800)
   * M denotes the number of EEG channels (our case: 64)
 * sub_size: The number of subjects (our case: 52)
-* bad_sub: 1-D array representing number of subjects (our case has two bad subjects - subject29, subject34)
+* bad_sub: 1-D array representing the number of subjects (our case has two bad subjects - subject29, subject34)
 * data_path: Path which includes data (The EEGlab dataset containing the dipole fitting results must be saved in the dipfit folder in data_path)
-* matlab_path: matlab folder path 
+* matlab_path: Matlab folder path 
 ### Usage (see main.m)
 ```MATLAB
 Fx_dipfit_save(spa_arr, sub_size, bad_sub, data_path, matlab_path)

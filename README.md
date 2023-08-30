@@ -33,7 +33,7 @@ You may find the function for dipole fitting in the file in this directory (see 
 This function includes dipole fitting procedure based on spatial pattern interpreted from compact CNN.
 This function 1) read raw EEG datasets, 2) fit dipole, and 3) save EEG datasets which contain dipole fitting results  
 ### Key parameters
-* spa_arr: Spatial pattern interpreted from compact CNN. The spatial pattern will be used for dipole fitting (NXM 2-D array)
+* spa_arr: Spatial pattern interpreted from compact CNN (NXM 2-D array). The spatial pattern will be used for dipole fitting.
   * N denotes the number of convolutional filters (our case: 800)
   * M denotes the number of EEG channels (our case: 64)
 * sub_size: The number of subjects (our case: 52)

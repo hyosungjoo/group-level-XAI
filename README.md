@@ -21,7 +21,6 @@ You may find the function for dipole fitting in the file in this directory (see 
 * STUDY: A new STUDY set containing clustering results
 * ALLEEG: A vector of EEG datasets included in the STUDY structure 
 * group_output: A structure to contain the selected number of clusters and convolutional filters belonging to selected clusters.
- * convolutional filters represented with the subject number and branches, including convolutional filters.
 * This function draws two figures: task relevancy bar graph and dipole distribution.
 ### Usage (see main.m)
 ```MATLAB
@@ -38,7 +37,7 @@ This function 1) reads raw EEG datasets, 2) fits dipole, and 3) saves EEG datase
   * M denotes the number of EEG channels (our case: 64)
 * sub_size: The number of subjects (our case: 52)
 * bad_sub: 1-D array representing the number of subjects (our case has two bad subjects - subject29, subject34)
-* data_path: Path which includes data (The EEGlab dataset containing the dipole fitting results must be saved in the dipfit folder in data_path)
+* data_path: Path which includes data (The EEGLAB dataset containing the dipole fitting results must be saved in the dipfit folder in data_path)
 * matlab_path: Matlab folder path 
 ### Usage (see main.m)
 ```MATLAB

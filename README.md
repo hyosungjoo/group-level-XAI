@@ -20,7 +20,7 @@ You may find the function for dipole fitting in the file in this directory (see 
 ### Outputs
 * STUDY: A new STUDY set containing clustering results
 * ALLEEG: A vector of EEG datasets included in the STUDY structure 
-* group_output: A structure to contain the selected number of clusters and convolutional filters belonging to selected clusters.
+* group_output: A structure to contain the selected number of clusters and convolutional filters belonging to selected clusters. The "convolutional filters" variable represents indexes of the filters, including the subject number (first column) and branch number (second column).
 * This function draws two figures: task relevancy bar graph and dipole distribution.
 ### Usage (see main.m)
 ```MATLAB

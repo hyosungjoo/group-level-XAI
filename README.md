@@ -45,6 +45,8 @@ Fx_dipfit_save(spa_arr, sub_size, bad_sub, data_path, matlab_path)
 ```
 
 # Paper Citation
+If you use our code in your research and found it helpful, please cite the following paper:
+* H. Joo, L. D. A. Quan, L. T. Trang, D. Kim and J. Woo, "Group-Level Interpretation of Electroencephalography Signals Using Compact Convolutional Neural Networks," in IEEE Access, vol. 11, pp. 114992-115001, 2023, doi: 10.1109/ACCESS.2023.3325283.
 
 # Legal disclaimer
 This project is governed by the terms of the Creative Commons Zero 1.0 Universal (CC0 1.0) Public Domain Dedication (the Agreement). You should have received a copy of the Agreement with a copy of this software. You may find the full license in the file LICENSE in this directory.
